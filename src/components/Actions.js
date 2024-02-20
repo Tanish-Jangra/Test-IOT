@@ -2,7 +2,8 @@ import React from "react";
 import { MQTT, setDestinationName, publish, getClient } from "./../mqtt";
 import { Parameter } from "../Parameter";
 import { useState, useEffect } from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar.jsx";
+import Sidebar from "./Sidebar/Sidebar.jsx";
 import "./Actions.css";
 import ReactLoading from "react-loading";
 import { toast } from 'react-toastify';
@@ -13,6 +14,18 @@ const Actions = () => {
   const [loading, setLoading] = useState(true);
   const [showPopUp, setShowPopUp] = useState(false);
   const [actionPerformed, setActionPerformed] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+
+  function handleWindowSizeChange(){
+    setIsLargeScreen(window.innerWidth > 768);
+  }
+
+  useEffect(()=>{
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    }
+  }, [])
 
   function fetchActions() {
     publish("http://192.168.4.1/api/v1.0/keys/attributes", showActions);
@@ -122,7 +135,11 @@ const Actions = () => {
 
   return (
     <>
-      <Navbar />
+      {isLargeScreen ? (
+        <Navbar />
+      ) : (
+        <Sidebar />
+      )}
       {loading === true ? (
           <div className="loadingg">
             <ReactLoading type="spinningBubbles" color="#284897" height={170} width={80} />

@@ -1,5 +1,6 @@
 import React from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar.jsx";
+import Sidebar from "./Sidebar/Sidebar.jsx";
 import { Parameter } from "../Parameter";
 import { useState, useEffect } from "react";
 import ReactLoading from "react-loading";
@@ -12,6 +13,19 @@ const SelectGraphs = () => {
   const [graphParameters, setGraphParameters] = useState([]);
   const [checked, setChecked] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+
+  function handleWindowSizeChange() {
+    setIsLargeScreen(window.innerWidth > 768); // Set breakpoint as per your requirement
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    }
+  }, []);
+
   function showParameters(jsonData) {
     let jsonArray;
     if (typeof jsonData.data === 'string') {
@@ -72,7 +86,11 @@ const SelectGraphs = () => {
 
   return (
     <>
-      <Navbar />
+      {isLargeScreen ? (
+        <Navbar />
+      ) : (
+        <Sidebar />
+      )}
       {loading === true ? (
           <div className='loading'>
             <ReactLoading

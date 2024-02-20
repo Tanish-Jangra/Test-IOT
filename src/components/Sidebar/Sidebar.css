@@ -1,0 +1,113 @@
+.hamburgerIcon {
+    width: 40px;
+    padding: 10px;
+    position: absolute;
+    background-color: white;
+    top: 10px;
+    left: 8px;
+    cursor: pointer;
+    /* z-index: 999; */
+  }
+  
+  .logoData {
+    text-align: center;
+  }
+  
+  .titleName {
+    padding: 18px;
+    width: 260px;
+    color: white;
+    background-color: #1c3269;
+  }
+  
+  .SidebarContainer {
+    position: relative;
+    width: 100%;
+    height: 80px;
+    /* background-color: red; */
+    z-index: 1200;
+  }
+
+  .topBar{
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    justify-content: space-around;
+  }
+
+  .topBar h3{
+    color: #1c3269;
+  }
+  
+  .sidebarItems {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    min-height: 100vh;
+    background-color: #1c3269;
+    transition: width 0.3s ease-in-out; /* Transition the width property */
+    overflow: hidden;
+  }
+  
+  .sidebarItems.active {
+    width: 260px; /* Adjust the width to show the sidebar */
+  }
+  
+  .closeIcon {
+    width: 40px;
+    padding: 10px;
+    /* position: absolute; */
+    background-color: #1c3269;
+    cursor: pointer;
+    z-index: 1300;
+  }
+  
+  .menuItems {
+    background-color: #1c3269;
+    margin-top: 30px;
+  }
+  
+  .lists {
+    background-color: #1c3269;
+    padding: 10px;
+  }
+  
+  .list {
+    width: 234px;
+    list-style-type: none;
+    font-weight: 800;
+    font-size: 14px;
+    padding: 18px;
+    border-radius: 10px;
+    background-color: white;
+    color: rgb(73, 71, 71);
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+  
+  .list:hover {
+    transform: scale(1.05);
+    background-color: #c3d0f0;
+  }
+  
+  /* .list.active {
+    color: red;
+  } */
+  
+  /* .list:active, list:focus-visible {
+    transform: scale(1);
+    color: red;
+  } */
+
+  .nav-links.active .list {
+    /* color: white; */
+    background-color: #c3d0f0;
+   }
+  
+  .nav-links {
+    text-decoration: none;
+    color: #1c3269;
+  }
+  

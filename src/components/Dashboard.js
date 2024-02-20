@@ -1,7 +1,8 @@
 import React from "react";
 import { Parameter } from "../Parameter";
 import { useState, useEffect } from "react";
-import Navbar from "./Navbar";
+import Navbar from "./Navbar/Navbar.jsx";
+import Sidebar from "./Sidebar/Sidebar.jsx";
 import { MQTT, setDestinationName, publish, getClient } from "./../mqtt";
 import "./Dashboard.css";
 import ReactLoading from "react-loading";
@@ -30,6 +31,18 @@ import sensors from "./../assets/sensors.png";
 const Dashboard = () => {
   const [parameters, setParameters] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [isLargeScreen, setIsLargeScreen] = useState(window.innerWidth > 768);
+
+  function handleWindowSizeChange() {
+    setIsLargeScreen(window.innerWidth > 768); // Set breakpoint as per your requirement
+  }
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    }
+  }, []);
 
   let interval;
   function fetchParameters() {
@@ -125,7 +138,11 @@ const Dashboard = () => {
 
   return (
     <>
-      <Navbar />
+      {isLargeScreen ? (
+        <Navbar />
+      ) : (
+        <Sidebar />
+      )}
       {loading === true ? (
         <div className="loading">
           <ReactLoading
