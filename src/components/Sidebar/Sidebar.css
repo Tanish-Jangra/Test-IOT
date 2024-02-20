@@ -31,12 +31,15 @@
   .topBar{
     display: flex;
     align-items: center;
-    padding: 40px;
+    padding: 25px;
     justify-content: space-around;
   }
 
   .topBar h3{
-    color: #1c3269;
+    color: white;
+    background-color: #1c3269;
+    padding: 10px;
+    border-radius: 8px;
   }
   
   .sidebarItems {
