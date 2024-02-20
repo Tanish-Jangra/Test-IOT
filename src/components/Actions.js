@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import "./Actions.css";
 import ReactLoading from "react-loading";
-import clickhere from './../assets/abcd.jpg';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -132,8 +131,9 @@ const Actions = () => {
           <div className="actions">
             {actions.map((action, index) => (
               <div className="action" onClick={(e) => { handleConfirmation(e, index); }}>
-                <p className="actionTitle">{action.title}</p>
-                <img src={clickhere} width={44} height={44} />
+                <p className="actionTitle" onClick={(e) => { handleConfirmation(e, index); }}>{action.title}</p>
+                <button className="actionBtn">Apply</button>
+                {/* <img src={clickhere} width={44} height={44} /> */}
               </div>
             ))}
           </div>
